@@ -39,6 +39,15 @@
   background: #8C6A6E;
 }
 
+/* Hide native scrollbar for horizontal mobile sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Foil shimmer accent border utility */
 .foil-gradient-line {
   background: linear-gradient(90deg, #6E1B24 0%, #D4AF7A 50%, #6E1B24 100%);
