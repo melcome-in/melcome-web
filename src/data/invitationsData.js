@@ -187,22 +187,19 @@ export const HOW_IT_WORKS_STEPS = [
   {
     number: '01',
     title: 'Pick Your Design',
-    description:
-      'Browse our curated collection. Each template is handcrafted with cultural authenticity and smooth animations.',
+    description: 'Choose your favorite template from our collection.',
     iconName: 'LayoutGrid',
   },
   {
     number: '02',
-    title: 'Share Your Story',
-    description:
-      'Send us your details via WhatsApp — names, dates, venues, and photos. We handle all the customization.',
+    title: 'Share Details',
+    description: 'Send your names, dates, venues & photos via WhatsApp.',
     iconName: 'MessageSquare',
   },
   {
     number: '03',
     title: 'Share & Celebrate',
-    description:
-      'Get your unique link in 1–2 days. Share on WhatsApp, track RSVPs live, and enjoy your special day.',
+    description: 'Get your live link in 24–48 hrs and share with guests.',
     iconName: 'Share2',
   },
 ];

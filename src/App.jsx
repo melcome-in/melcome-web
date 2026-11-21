@@ -567,39 +567,35 @@ export default function App() {
         </section>
 
         {/* =====================================================================
-            E. STEPS SECTION ("HOW IT WORKS")
+            E. STEPS SECTION ("HOW IT WORKS" — SHORT & SIMPLE)
         ====================================================================== */}
         <section
           id="how-it-works"
-          className="border-t border-[#E3D9CE] bg-white/50 py-20 sm:py-24"
+          className="border-t border-[#E3D9CE] bg-white/50 py-12 sm:py-16"
         >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Header (Centered) */}
-            <div className="gsap-reveal mx-auto max-w-2xl text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            {/* Compact Centered Header */}
+            <div className="gsap-reveal mx-auto max-w-xl text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
                 EFFORTLESS PROCESS
               </p>
-              <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight sm:text-5xl">
-                <span className="block text-[#1A0B0D]">Three Steps to Your</span>
-                <span className="block italic text-[#6E1B24]">Perfect Invitation</span>
+              <h2 className="mt-1.5 font-serif text-3xl font-bold text-[#1A0B0D] sm:text-4xl">
+                Three Simple Steps
               </h2>
-              <p className="mt-4 text-sm text-[#8C6A6E] sm:text-base">
-                We handle the design and tech. You focus on your celebration.
-              </p>
             </div>
 
-            {/* 3-Column Horizontal Process Flow Connected by a Thin Horizontal 1px Gradient Line */}
-            <div className="gsap-stagger-group relative mt-16">
-              {/* Thin Horizontal Connecting Line (1px gradient from #6E1B24 to #D4AF7A) behind numbered circles on desktop */}
+            {/* Compact 3-Column Horizontal Process Row (Mobile & Desktop) */}
+            <div className="gsap-stagger-group relative mt-8 sm:mt-10">
+              {/* Thin Horizontal Connecting Line (1px gradient from #6E1B24 to #D4AF7A) */}
               <div
-                className="pointer-events-none absolute left-[16%] right-[16%] top-8 hidden h-[1px] md:block"
+                className="pointer-events-none absolute left-[16%] right-[16%] top-6 sm:top-7 h-[1px]"
                 style={{
                   background: 'linear-gradient(90deg, #6E1B24 0%, #D4AF7A 50%, #6E1B24 100%)',
                 }}
                 aria-hidden="true"
               />
 
-              <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+              <div className="grid grid-cols-3 gap-3 sm:gap-8">
                 {HOW_IT_WORKS_STEPS.map((step) => {
                   const StepIcon = STEP_ICONS[step.iconName] || LayoutGrid;
                   return (
@@ -607,23 +603,19 @@ export default function App() {
                       key={step.number}
                       className="gsap-stagger-item relative flex flex-col items-center text-center"
                     >
-                      {/* Circular White Badge (w-16 h-16 rounded-full bg-white shadow-md) containing serif number in #6E1B24 */}
-                      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-[#E3D9CE] bg-white shadow-md">
-                        <span className="font-serif text-2xl font-bold text-[#6E1B24]">
+                      {/* Compact Circular Badge with Icon & Step Number Pill */}
+                      <div className="relative z-10 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[#E3D9CE] bg-white text-[#6E1B24] shadow-sm">
+                        <StepIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
+                        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#3D0C11] font-serif text-[10px] font-bold text-[#F6F1EA]">
                           {step.number}
                         </span>
                       </div>
 
-                      {/* Below the Circle: Soft Tinted Rounded-Square Icon Container (bg-[#F0E6E4] text-[#6E1B24]) */}
-                      <div className="mt-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F0E6E4] text-[#6E1B24] shadow-sm">
-                        <StepIcon className="h-5 w-5" strokeWidth={1.5} />
-                      </div>
-
-                      {/* Bold Serif Title + Concise 2-Line Description */}
-                      <h3 className="mt-4 font-serif text-2xl font-bold text-[#1A0B0D]">
+                      {/* Concise Title + Short Description */}
+                      <h3 className="mt-3 font-serif text-sm sm:text-xl font-bold leading-snug text-[#1A0B0D]">
                         {step.title}
                       </h3>
-                      <p className="mt-2 max-w-xs text-sm leading-relaxed text-[#8C6A6E]">
+                      <p className="mt-1 max-w-[200px] text-[11px] sm:text-xs leading-snug text-[#8C6A6E]">
                         {step.description}
                       </p>
                     </div>
