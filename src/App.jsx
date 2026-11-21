@@ -489,8 +489,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Responsive 3-Column Grid on Desktop (grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8) */}
-            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Responsive 2-Column Grid on Mobile, 3-Column Grid on Desktop */}
+            <div className="mt-10 sm:mt-12 grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-3 lg:gap-8">
               {filteredDemos.map((demo) => (
                 <DemoCard
                   key={demo.id}
