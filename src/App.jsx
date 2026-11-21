@@ -442,30 +442,6 @@ export default function App() {
                     <span>How It Works</span>
                   </button>
                 </div>
-
-                {/* Mini Trust Strip below CTAs */}
-                <div className="gsap-hero-item mt-9 border-t border-[#E3D9CE] pt-6">
-                  <div className="flex flex-wrap items-center gap-y-2.5 gap-x-4 text-xs font-medium text-[#8C6A6E] sm:text-sm">
-                    <span className="inline-flex items-center gap-1.5 text-[#1A0B0D]">
-                      <Smartphone className="h-4 w-4 text-[#6E1B24]" strokeWidth={1.5} />
-                      100% Mobile-First
-                    </span>
-                    <span className="text-[#D4AF7A]" aria-hidden="true">
-                      •
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-[#1A0B0D]">
-                      <CheckCircle2 className="h-4 w-4 text-[#6E1B24]" strokeWidth={1.5} />
-                      Live RSVP Tracking
-                    </span>
-                    <span className="text-[#D4AF7A]" aria-hidden="true">
-                      •
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-[#1A0B0D]">
-                      <Clock className="h-4 w-4 text-[#6E1B24]" strokeWidth={1.5} />
-                      Delivered in 24–48 Hours
-                    </span>
-                  </div>
-                </div>
               </div>
 
               {/* Right Column: Sleek, Realistic Floating Smartphone Mockup (5 cols on desktop) */}
