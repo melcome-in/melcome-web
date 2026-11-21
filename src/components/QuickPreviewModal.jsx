@@ -156,11 +156,11 @@ export default function QuickPreviewModal({
                     onClick={() => setIsOpened(true)}
                     className="group my-2 flex flex-col items-center focus:outline-none"
                   >
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[#D4AF7A]/50 bg-[#2A070B] p-1.5 shadow-xl transition-transform duration-300 group-hover:scale-105">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[#D4AF7A]/50 bg-[#F6F1EA] p-1.5 shadow-xl transition-transform duration-300 group-hover:scale-105">
                       <img
-                        src="./assets/logo-foil.jpg"
+                        src="./assets/wax-seal-icon.png"
                         alt="Tap Wax Seal"
-                        className="h-full w-full rounded-full object-cover"
+                        className="h-full w-full object-contain"
                       />
                     </div>
                     <span className="mt-3.5 inline-flex items-center gap-1.5 rounded-full border border-[#D4AF7A] bg-[#6E1B24] px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#F6F1EA] transition-colors group-hover:bg-[#D4AF7A] group-hover:text-[#1A0B0D]">

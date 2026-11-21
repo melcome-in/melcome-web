@@ -115,11 +115,11 @@ export default function HeroPhoneMockup({ onOpenFullDemo }) {
                   onClick={() => setIsEnvelopeOpen(true)}
                   className="group relative flex flex-col items-center focus:outline-none"
                 >
-                  <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-[#D4AF7A]/40 bg-[#2A070B] p-2 shadow-xl transition-transform duration-300 group-hover:scale-105">
+                  <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-[#D4AF7A]/40 bg-[#F6F1EA] p-2 shadow-xl transition-transform duration-300 group-hover:scale-105">
                     <img
-                      src="./assets/logo-foil.jpg"
+                      src="./assets/wax-seal-icon.png"
                       alt="Melcome Wax Seal Emblem"
-                      className="h-full w-full rounded-full object-cover"
+                      className="h-full w-full object-contain"
                     />
                   </div>
                   <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#D4AF7A]/50 bg-[#6E1B24]/80 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#F6F1EA] transition-colors duration-300 group-hover:bg-[#D4AF7A] group-hover:text-[#1A0B0D]">

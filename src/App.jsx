@@ -21,7 +21,7 @@ import {
   Heart,
   ExternalLink,
 } from 'lucide-react';
-import WaxSealIcon from './components/WaxSealIcon';
+import WaxSealIcon, { MelcomeLogoLockup } from './components/WaxSealIcon';
 import HeroPhoneMockup from './components/HeroPhoneMockup';
 import DemoCard from './components/DemoCard';
 import QuickPreviewModal from './components/QuickPreviewModal';
@@ -172,25 +172,16 @@ export default function App() {
       ====================================================================== */}
       <header className="sticky top-0 z-40 w-full border-b border-[#E3D9CE] bg-[#F6F1EA]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-          {/* Left: Horizontal Lockup — Circular Wax-Seal Icon + MELCOME Serif Wordmark */}
+          {/* Left: Official Horizontal Lockup — Circular Wax-Seal Emblem + MELCOME Logotype */}
           <a
             href="#top"
-            className="group flex items-center gap-3 focus:outline-none"
+            className="group flex items-center py-0.5 focus:outline-none"
             aria-label="Melcome Digital Wedding Invitation Studio Home"
           >
-            <WaxSealIcon
+            <MelcomeLogoLockup
               variant="oxblood"
-              size={38}
-              className="transition-transform duration-300 group-hover:scale-105"
+              className="h-10 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
             />
-            <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-semibold tracking-[0.18em] text-[#1A0B0D]">
-                MELCOME
-              </span>
-              <span className="hidden sm:block text-[9px] uppercase tracking-[0.24em] text-[#8C6A6E] -mt-1">
-                Invitation Studio
-              </span>
-            </div>
           </a>
 
           {/* Center: Desktop Navigation Links */}
@@ -378,6 +369,9 @@ export default function App() {
         >
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <div className="gsap-reveal">
+              <div className="mx-auto mb-3 flex justify-center">
+                <WaxSealIcon variant="oxblood" size={52} />
+              </div>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
                 WHY MELCOME
               </p>
@@ -652,16 +646,14 @@ export default function App() {
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 pb-12 border-b border-[#D4AF7A]/20">
             {/* Brand Column (5 cols) */}
             <div className="lg:col-span-5">
-              <div className="flex items-center gap-3.5">
-                <WaxSealIcon variant="foil" size={44} />
-                <div>
-                  <span className="font-serif text-2xl font-semibold tracking-[0.2em] text-[#F6F1EA]">
-                    MELCOME
-                  </span>
-                  <p className="text-[10px] uppercase tracking-[0.24em] text-[#D4AF7A]">
-                    Digital Wedding Invitation Studio
-                  </p>
-                </div>
+              <div className="flex flex-col items-start">
+                <MelcomeLogoLockup
+                  variant="foil"
+                  className="h-12 sm:h-14 w-auto"
+                />
+                <p className="mt-2 text-[10px] uppercase tracking-[0.24em] text-[#D4AF7A]">
+                  Digital Wedding Invitation Studio
+                </p>
               </div>
 
               <p className="mt-4 font-serif text-xl italic text-[#D4AF7A]">
