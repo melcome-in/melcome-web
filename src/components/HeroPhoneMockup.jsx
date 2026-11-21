@@ -117,7 +117,7 @@ export default function HeroPhoneMockup({ onOpenFullDemo }) {
                 >
                   <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-[#D4AF7A]/40 bg-[#2A070B] p-2 shadow-xl transition-transform duration-300 group-hover:scale-105">
                     <img
-                      src="/assets/logo-foil.jpg"
+                      src="./assets/logo-foil.jpg"
                       alt="Melcome Wax Seal Emblem"
                       className="h-full w-full rounded-full object-cover"
                     />
@@ -165,7 +165,7 @@ export default function HeroPhoneMockup({ onOpenFullDemo }) {
                 <div className="relative z-10 mx-auto my-2 w-full max-w-[215px]">
                   <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-[48px] rounded-b-xl border border-[#D4AF7A]/60 shadow-sm">
                     <img
-                      src="/assets/editorial-couple.jpg"
+                      src="./assets/editorial-couple.jpg"
                       alt="Couple holding hands with deep burgundy roses"
                       className="h-full w-full object-cover"
                     />

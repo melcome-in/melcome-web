@@ -158,7 +158,7 @@ export default function QuickPreviewModal({
                   >
                     <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[#D4AF7A]/50 bg-[#2A070B] p-1.5 shadow-xl transition-transform duration-300 group-hover:scale-105">
                       <img
-                        src="/assets/logo-foil.jpg"
+                        src="./assets/logo-foil.jpg"
                         alt="Tap Wax Seal"
                         className="h-full w-full rounded-full object-cover"
                       />

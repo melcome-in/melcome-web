@@ -14,7 +14,7 @@ export const INVITATION_DEMOS = [
     venueName: 'The Leela Palace, Adyar Seaface',
     storyQuote: '“Bound by sacred chants, jasmine garlands, and seven timeless vows beneath the temple gopuram.”',
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=85',
-    secondaryImage: '/assets/editorial-couple.jpg',
+    secondaryImage: './assets/editorial-couple.jpg',
     themePalette: {
       coverBg: '#3D0C11',
       cardBg: '#F6F1EA',
@@ -43,7 +43,7 @@ export const INVITATION_DEMOS = [
     city: 'Udaipur, Rajasthan',
     venueName: 'The Oberoi Udaivilas, Lake Pichola',
     storyQuote: '“Crafted like fine heirloom stationery—where every line of typography whispers quiet romance.”',
-    image: '/assets/editorial-couple.jpg',
+    image: './assets/editorial-couple.jpg',
     secondaryImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85',
     themePalette: {
       coverBg: '#3D0C11',
@@ -74,7 +74,7 @@ export const INVITATION_DEMOS = [
     venueName: 'Taj Falaknuma Palace, Engine Bowli',
     storyQuote: '“An evening draped in velvet maroon, champagne foil, and Nizami grandeur under starlit arches.”',
     image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85',
-    secondaryImage: '/assets/editorial-couple.jpg',
+    secondaryImage: './assets/editorial-couple.jpg',
     themePalette: {
       coverBg: '#2A070B',
       cardBg: '#3D0C11',
@@ -104,7 +104,7 @@ export const INVITATION_DEMOS = [
     venueName: 'Kumarakom Lake Resort, Backwaters',
     storyQuote: '“Woven in pure Kasavu gold and silk ivory, celebrating love amidst tranquil backwaters and nilavilakku glow.”',
     image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=85',
-    secondaryImage: '/assets/editorial-couple.jpg',
+    secondaryImage: './assets/editorial-couple.jpg',
     themePalette: {
       coverBg: '#3D0C11',
       cardBg: '#F6F1EA',
@@ -134,7 +134,7 @@ export const INVITATION_DEMOS = [
     venueName: 'Grand Hyatt Kochi Bolgatty',
     storyQuote: '“Two hearts, one covenant—framed in white roses, cathedral light, and timeless editorial grace.”',
     image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85',
-    secondaryImage: '/assets/editorial-couple.jpg',
+    secondaryImage: './assets/editorial-couple.jpg',
     themePalette: {
       coverBg: '#3D0C11',
       cardBg: '#FFFFFF',
@@ -164,7 +164,7 @@ export const INVITATION_DEMOS = [
     venueName: 'Taj West End, Race Course Road',
     storyQuote: '“Pure typography, generous Silk Ivory breathing room, and every essential detail at a single tap.”',
     image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=85',
-    secondaryImage: '/assets/editorial-couple.jpg',
+    secondaryImage: './assets/editorial-couple.jpg',
     themePalette: {
       coverBg: '#6E1B24',
       cardBg: '#F6F1EA',
