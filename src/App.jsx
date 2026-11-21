@@ -479,36 +479,67 @@ export default function App() {
         </section>
 
         {/* =====================================================================
-            C. SMALL ABOUT SECTION
+            C. STEPS SECTION ("EFFORTLESS PROCESS" — RIGHT AFTER HERO)
         ====================================================================== */}
         <section
-          id="about"
-          className="border-y border-[#E3D9CE] bg-white/60 py-16 sm:py-20"
+          id="how-it-works"
+          className="border-y border-[#E3D9CE] bg-white/50 py-12 sm:py-16"
         >
-          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="gsap-reveal">
-              <div className="mx-auto mb-3 flex justify-center">
-                <WaxSealIcon variant="oxblood" size={52} />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
-                WHY MELCOME
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            {/* Compact Centered Header */}
+            <div className="gsap-reveal mx-auto max-w-xl text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
+                EFFORTLESS PROCESS
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-semibold text-[#1A0B0D] sm:text-4xl lg:text-[42px]">
-                Timeless by Aesthetic.{' '}
-                <span className="italic font-normal text-[#6E1B24]">Interactive by Design.</span>
+              <h2 className="mt-1.5 font-serif text-3xl font-bold text-[#1A0B0D] sm:text-4xl">
+                Three Simple Steps
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#8C6A6E] sm:text-base">
-                Paper cards get tucked away and generic PDFs get lost in chat threads. Melcome
-                bridges classic wedding craftsmanship with modern web interactivity—giving your
-                guests Google Maps navigation, event timelines, and instant RSVPs in one effortless
-                link.
-              </p>
+            </div>
+
+            {/* Compact 3-Column Horizontal Process Row (Mobile & Desktop) */}
+            <div className="gsap-stagger-group relative mt-8 sm:mt-10">
+              {/* Thin Horizontal Connecting Line (1px gradient from #6E1B24 to #D4AF7A) */}
+              <div
+                className="pointer-events-none absolute left-[16%] right-[16%] top-6 sm:top-7 h-[1px]"
+                style={{
+                  background: 'linear-gradient(90deg, #6E1B24 0%, #D4AF7A 50%, #6E1B24 100%)',
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="grid grid-cols-3 gap-3 sm:gap-8">
+                {HOW_IT_WORKS_STEPS.map((step) => {
+                  const StepIcon = STEP_ICONS[step.iconName] || LayoutGrid;
+                  return (
+                    <div
+                      key={step.number}
+                      className="gsap-stagger-item relative flex flex-col items-center text-center"
+                    >
+                      {/* Compact Circular Badge with Icon & Step Number Pill */}
+                      <div className="relative z-10 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[#E3D9CE] bg-white text-[#6E1B24] shadow-sm">
+                        <StepIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
+                        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#3D0C11] font-serif text-[10px] font-bold text-[#F6F1EA]">
+                          {step.number}
+                        </span>
+                      </div>
+
+                      {/* Concise Title + Short Description */}
+                      <h3 className="mt-3 font-serif text-sm sm:text-xl font-bold leading-snug text-[#1A0B0D]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 max-w-[200px] text-[11px] sm:text-xs leading-snug text-[#8C6A6E]">
+                        {step.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
         {/* =====================================================================
-            D. INVITATION DEMOS SECTION (6 DUMMY CARDS)
+            D. INVITATION DEMOS SECTION ("OUR COLLECTION")
         ====================================================================== */}
         <section id="collection" className="py-20 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -567,61 +598,30 @@ export default function App() {
         </section>
 
         {/* =====================================================================
-            E. STEPS SECTION ("HOW IT WORKS" — SHORT & SIMPLE)
+            E. SMALL ABOUT SECTION ("WHY MELCOME" — AFTER OUR COLLECTION)
         ====================================================================== */}
         <section
-          id="how-it-works"
-          className="border-t border-[#E3D9CE] bg-white/50 py-12 sm:py-16"
+          id="about"
+          className="border-t border-[#E3D9CE] bg-white/60 py-16 sm:py-20"
         >
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            {/* Compact Centered Header */}
-            <div className="gsap-reveal mx-auto max-w-xl text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
-                EFFORTLESS PROCESS
-              </p>
-              <h2 className="mt-1.5 font-serif text-3xl font-bold text-[#1A0B0D] sm:text-4xl">
-                Three Simple Steps
-              </h2>
-            </div>
-
-            {/* Compact 3-Column Horizontal Process Row (Mobile & Desktop) */}
-            <div className="gsap-stagger-group relative mt-8 sm:mt-10">
-              {/* Thin Horizontal Connecting Line (1px gradient from #6E1B24 to #D4AF7A) */}
-              <div
-                className="pointer-events-none absolute left-[16%] right-[16%] top-6 sm:top-7 h-[1px]"
-                style={{
-                  background: 'linear-gradient(90deg, #6E1B24 0%, #D4AF7A 50%, #6E1B24 100%)',
-                }}
-                aria-hidden="true"
-              />
-
-              <div className="grid grid-cols-3 gap-3 sm:gap-8">
-                {HOW_IT_WORKS_STEPS.map((step) => {
-                  const StepIcon = STEP_ICONS[step.iconName] || LayoutGrid;
-                  return (
-                    <div
-                      key={step.number}
-                      className="gsap-stagger-item relative flex flex-col items-center text-center"
-                    >
-                      {/* Compact Circular Badge with Icon & Step Number Pill */}
-                      <div className="relative z-10 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[#E3D9CE] bg-white text-[#6E1B24] shadow-sm">
-                        <StepIcon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
-                        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#3D0C11] font-serif text-[10px] font-bold text-[#F6F1EA]">
-                          {step.number}
-                        </span>
-                      </div>
-
-                      {/* Concise Title + Short Description */}
-                      <h3 className="mt-3 font-serif text-sm sm:text-xl font-bold leading-snug text-[#1A0B0D]">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 max-w-[200px] text-[11px] sm:text-xs leading-snug text-[#8C6A6E]">
-                        {step.description}
-                      </p>
-                    </div>
-                  );
-                })}
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <div className="gsap-reveal">
+              <div className="mx-auto mb-3 flex justify-center">
+                <WaxSealIcon variant="oxblood" size={52} />
               </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#6E1B24]">
+                WHY MELCOME
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-semibold text-[#1A0B0D] sm:text-4xl lg:text-[42px]">
+                Timeless by Aesthetic.{' '}
+                <span className="italic font-normal text-[#6E1B24]">Interactive by Design.</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#8C6A6E] sm:text-base">
+                Paper cards get tucked away and generic PDFs get lost in chat threads. Melcome
+                bridges classic wedding craftsmanship with modern web interactivity—giving your
+                guests Google Maps navigation, event timelines, and instant RSVPs in one effortless
+                link.
+              </p>
             </div>
           </div>
         </section>
