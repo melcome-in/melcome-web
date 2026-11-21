@@ -504,61 +504,6 @@ export default function App() {
                 link.
               </p>
             </div>
-
-            {/* 3 Minimal Value Pillars (inline row) */}
-            <div className="gsap-stagger-group mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {[
-                {
-                  title: 'Bespoke Craftsmanship',
-                  subtitle: 'Wax-seal triggers, heirloom serif typography & cultural motifs',
-                  icon: Sparkles,
-                },
-                {
-                  title: 'One-Tap WhatsApp Sharing',
-                  subtitle: 'Custom preview cards ready for family groups & personal chats',
-                  icon: Share2,
-                },
-                {
-                  title: 'Seamless Guest Experience',
-                  subtitle: 'Zero app downloads—instant maps, itineraries & live RSVPs',
-                  icon: Heart,
-                },
-              ].map((pillar) => {
-                const IconComponent = pillar.icon;
-                return (
-                  <div
-                    key={pillar.title}
-                    className="gsap-stagger-item flex flex-col items-center rounded-2xl border border-[#E3D9CE] bg-[#F6F1EA]/70 px-5 py-5 text-center transition-all duration-300 hover:border-[#D4AF7A] hover:bg-white"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F0E6E4] text-[#6E1B24]">
-                      <IconComponent className="h-5 w-5" strokeWidth={1.5} />
-                    </div>
-                    <h3 className="mt-3 font-serif text-xl font-bold text-[#1A0B0D]">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-[#8C6A6E]">
-                      {pillar.subtitle}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Subtle Brand Touchpoint Icon Strip (From Brand Guidelines Section 11 Iconography) */}
-            <div className="gsap-reveal mt-8 flex flex-wrap items-center justify-center gap-3 pt-2">
-              {BRAND_TOUCHPOINTS.map((tp) => {
-                const TpIcon = TOUCHPOINT_ICONS[tp.icon] || Sparkles;
-                return (
-                  <div
-                    key={tp.label}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#E3D9CE] bg-white px-3.5 py-1.5 text-xs text-[#1A0B0D]"
-                  >
-                    <TpIcon className="h-3.5 w-3.5 text-[#6E1B24]" strokeWidth={1.5} />
-                    <span className="font-medium">{tp.label}</span>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </section>
 
