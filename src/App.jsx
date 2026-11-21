@@ -749,101 +749,72 @@ export default function App() {
       </main>
 
       {/* =====================================================================
-          G. FOOTER (DARK CONTRAST ANCHOR)
+          G. FOOTER (CLEAN, MINIMAL & MOBILE-FRIENDLY)
           Full-bleed Oxblood Wax (#3D0C11) background with Silk Ivory (#F6F1EA)
-          and Champagne Gold (#D4AF7A) text.
+          and Champagne Gold (#D4AF7A) accents.
       ====================================================================== */}
-      <footer className="bg-[#3D0C11] text-[#F6F1EA] border-t border-[#D4AF7A]/25">
-        <div className="mx-auto max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8 pb-12 border-b border-[#D4AF7A]/20">
-            {/* Brand Column (5 cols) */}
-            <div className="lg:col-span-5">
-              <div className="flex flex-col items-start">
-                <MelcomeLogoLockup
-                  variant="foil"
-                  className="h-12 sm:h-14 w-auto"
-                />
-                <p className="mt-2 text-[10px] uppercase tracking-[0.24em] text-[#D4AF7A]">
-                  Digital Wedding Invitation Studio
-                </p>
-              </div>
-
-              <p className="mt-4 font-serif text-xl italic text-[#D4AF7A]">
+      <footer className="border-t border-[#D4AF7A]/25 bg-[#3D0C11] text-[#F6F1EA]">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+          <div className="flex flex-col items-center text-center md:flex-row md:justify-between md:text-left gap-6 pb-8 border-b border-[#D4AF7A]/20">
+            {/* Left: Logo & Tagline */}
+            <div className="flex flex-col items-center md:items-start">
+              <MelcomeLogoLockup
+                variant="foil"
+                className="h-10 sm:h-12 w-auto"
+              />
+              <p className="mt-2 font-serif text-base sm:text-lg italic text-[#D4AF7A]">
                 “Every love story deserves a grand opening.”
               </p>
-
-              <p className="mt-3 max-w-sm text-xs leading-relaxed text-[#F6F1EA]/75">
-                Handcrafted interactive wedding invitation websites that blend heirloom stationery
-                aesthetics with effortless WhatsApp sharing, Google Maps navigation, and live RSVP
-                tracking.
-              </p>
             </div>
 
-            {/* Quick Links Column (3 cols) */}
-            <div className="lg:col-span-3">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF7A]">
-                Quick Links
-              </h3>
-              <ul className="mt-4 space-y-2.5 text-sm text-[#F6F1EA]/85">
-                {[
-                  { label: 'Invitation Collection', target: 'collection' },
-                  { label: 'How It Works', target: 'how-it-works' },
-                  { label: 'Couple Stories', target: 'reviews' },
-                  { label: 'Why Melcome', target: 'about' },
-                ].map((link) => (
-                  <li key={link.target}>
-                    <button
-                      type="button"
-                      onClick={() => scrollToSection(link.target)}
-                      className="transition-colors duration-300 hover:text-[#D4AF7A]"
-                    >
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Connect & Direct WhatsApp CTA Column (4 cols) */}
-            <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF7A]">
-                Start Your Invitation
-              </h3>
-              <p className="mt-3 text-xs leading-relaxed text-[#F6F1EA]/80">
-                Have a custom theme in mind or need your invitation link in 24 hours? Chat directly
-                with our design studio.
-              </p>
-
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col">
+            {/* Center: Single-Row Quick Links */}
+            <nav
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm text-[#F6F1EA]/85"
+              aria-label="Footer Navigation"
+            >
+              {[
+                { label: 'Collection', target: 'collection' },
+                { label: 'How It Works', target: 'how-it-works' },
+                { label: 'About', target: 'about' },
+                { label: 'Reviews', target: 'reviews' },
+              ].map((link) => (
                 <button
+                  key={link.target}
                   type="button"
-                  onClick={() => setOrderDemo(INVITATION_DEMOS[1])}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4AF7A] px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#1A0B0D] transition-all duration-300 hover:bg-[#E5C594]"
+                  onClick={() => scrollToSection(link.target)}
+                  className="transition-colors duration-300 hover:text-[#D4AF7A]"
                 >
-                  <MessageSquare className="h-4 w-4" strokeWidth={1.5} />
-                  <span>Chat on WhatsApp</span>
+                  {link.label}
                 </button>
+              ))}
+            </nav>
 
-                <a
-                  href="https://instagram.com/melcome.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#D4AF7A]/35 bg-[#6E1B24]/40 px-5 py-3 text-xs font-medium text-[#F6F1EA] transition-all duration-300 hover:border-[#D4AF7A] hover:bg-[#6E1B24]"
-                >
-                  <Instagram className="h-4 w-4 text-[#D4AF7A]" strokeWidth={1.5} />
-                  <span>Instagram @melcome.in</span>
-                  <ExternalLink className="h-3 w-3 opacity-70" strokeWidth={1.5} />
-                </a>
-              </div>
+            {/* Right: Side-by-Side WhatsApp & Instagram Pills */}
+            <div className="flex items-center justify-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => setOrderDemo(INVITATION_DEMOS[1])}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[#D4AF7A] px-4 py-2.5 text-xs font-semibold text-[#1A0B0D] transition-all duration-300 hover:bg-[#E5C594]"
+              >
+                <MessageSquare className="h-3.5 w-3.5" strokeWidth={1.5} />
+                <span>WhatsApp</span>
+              </button>
+
+              <a
+                href="https://instagram.com/melcome.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-[#D4AF7A]/35 bg-[#6E1B24]/40 px-4 py-2.5 text-xs font-medium text-[#F6F1EA] transition-all duration-300 hover:border-[#D4AF7A] hover:bg-[#6E1B24]"
+              >
+                <Instagram className="h-3.5 w-3.5 text-[#D4AF7A]" strokeWidth={1.5} />
+                <span>@melcome.in</span>
+              </a>
             </div>
           </div>
 
-          {/* Bottom Copyright Bar */}
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-[#F6F1EA]/70 sm:flex-row">
+          {/* Bottom Copyright */}
+          <div className="mt-6 text-center text-xs text-[#F6F1EA]/65">
             <p>© 2026 Melcome. All rights reserved.</p>
-            <p className="text-[11px] tracking-[0.16em] uppercase text-[#D4AF7A]/85">
-              melcome.in • Crafted with Love &amp; Editorial Precision
-            </p>
           </div>
         </div>
       </footer>
