@@ -20,8 +20,6 @@ import {
   Music,
   Heart,
   ExternalLink,
-  ChevronLeft,
-  ChevronRight,
 } from 'lucide-react';
 import WaxSealIcon, { MelcomeLogoLockup } from './components/WaxSealIcon';
 import HeroPhoneMockup from './components/HeroPhoneMockup';
@@ -52,6 +50,13 @@ const TOUCHPOINT_ICONS = {
   CheckCircle2,
 };
 
+// Triple-cloned array for seamless bidirectional infinite loop slider on mobile
+const INFINITE_MOBILE_REVIEWS = [
+  ...COUPLE_REVIEWS.map((r) => ({ ...r, cloneKey: `pre-${r.id}` })),
+  ...COUPLE_REVIEWS.map((r) => ({ ...r, cloneKey: `mid-${r.id}` })),
+  ...COUPLE_REVIEWS.map((r) => ({ ...r, cloneKey: `post-${r.id}` })),
+];
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -61,28 +66,75 @@ export default function App() {
 
   const mainRef = useRef(null);
   const reviewsSliderRef = useRef(null);
+  const currentPhysicalIndexRef = useRef(COUPLE_REVIEWS.length); // starts at middle set index 3
+  const isTouchingReviewsRef = useRef(false);
+  const scrollSettleTimerRef = useRef(null);
 
-  const scrollToReviewSlide = (index) => {
+  const centerPhysicalCard = (physicalIdx, smooth = true) => {
     const slider = reviewsSliderRef.current;
     if (!slider) return;
     const cards = slider.querySelectorAll('.review-slide-card');
-    const clampedIndex = (index + COUPLE_REVIEWS.length) % COUPLE_REVIEWS.length;
-    setActiveReviewIndex(clampedIndex);
-    if (cards[clampedIndex]) {
-      cards[clampedIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
+    const target = cards[physicalIdx];
+    if (!target) return;
+    const targetLeft =
+      target.offsetLeft - (slider.clientWidth - target.offsetWidth) / 2;
+
+    if (!smooth) {
+      slider.style.scrollSnapType = 'none';
+      slider.style.scrollBehavior = 'auto';
+      slider.scrollLeft = targetLeft;
+      void slider.offsetHeight;
+      slider.style.scrollSnapType = '';
+      slider.style.scrollBehavior = '';
+    } else {
+      slider.scrollTo({ left: targetLeft, behavior: 'smooth' });
     }
+    currentPhysicalIndexRef.current = physicalIdx;
+    setActiveReviewIndex(physicalIdx % COUPLE_REVIEWS.length);
+  };
+
+  // Initialize mobile infinite slider at the middle set on mount
+  useEffect(() => {
+    const slider = reviewsSliderRef.current;
+    if (!slider) return;
+    const initTimer = setTimeout(() => {
+      if (slider.clientWidth > 0) {
+        centerPhysicalCard(COUPLE_REVIEWS.length, false);
+      }
+    }, 60);
+    return () => clearTimeout(initTimer);
+  }, []);
+
+  // Calm infinite auto-slide on mobile viewports when not being touched
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const slider = reviewsSliderRef.current;
+      if (!slider || slider.clientWidth === 0 || isTouchingReviewsRef.current) {
+        return;
+      }
+      const n = COUPLE_REVIEWS.length;
+      const nextPhysical = currentPhysicalIndexRef.current + 1;
+      centerPhysicalCard(nextPhysical, true);
+    }, 3800);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToReviewSlide = (logicalIdx) => {
+    const n = COUPLE_REVIEWS.length;
+    const targetPhysical = n + ((logicalIdx % n) + n) % n;
+    centerPhysicalCard(targetPhysical, true);
   };
 
   const handleReviewsScroll = () => {
     const slider = reviewsSliderRef.current;
-    if (!slider) return;
+    if (!slider || slider.clientWidth === 0) return;
+    const n = COUPLE_REVIEWS.length;
     const scrollCenter = slider.scrollLeft + slider.clientWidth / 2;
     const cards = slider.querySelectorAll('.review-slide-card');
-    let closestIdx = 0;
+    if (cards.length < n * 3) return;
+
+    let closestIdx = n;
     let minDistance = Infinity;
     cards.forEach((card, idx) => {
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
@@ -92,9 +144,36 @@ export default function App() {
         closestIdx = idx;
       }
     });
-    if (closestIdx !== activeReviewIndex) {
-      setActiveReviewIndex(closestIdx);
+
+    currentPhysicalIndexRef.current = closestIdx;
+    const logicalIdx = closestIdx % n;
+    if (logicalIdx !== activeReviewIndex) {
+      setActiveReviewIndex(logicalIdx);
     }
+
+    // Once scroll snap settles, silently recenter into the middle clone set [n .. 2n-1]
+    if (scrollSettleTimerRef.current) {
+      clearTimeout(scrollSettleTimerRef.current);
+    }
+    scrollSettleTimerRef.current = setTimeout(() => {
+      if (isTouchingReviewsRef.current) return;
+      const idx = currentPhysicalIndexRef.current;
+      if (idx < n || idx >= n * 2) {
+        const normalizedPhysical = n + (idx % n);
+        const setSpan = cards[n].offsetLeft - cards[0].offsetLeft;
+        slider.style.scrollSnapType = 'none';
+        slider.style.scrollBehavior = 'auto';
+        if (idx < n) {
+          slider.scrollLeft += setSpan;
+        } else if (idx >= n * 2) {
+          slider.scrollLeft -= setSpan;
+        }
+        void slider.offsetHeight;
+        slider.style.scrollSnapType = '';
+        slider.style.scrollBehavior = '';
+        currentPhysicalIndexRef.current = normalizedPhysical;
+      }
+    }, 140);
   };
 
   const filteredDemos =
@@ -628,20 +707,27 @@ export default function App() {
               </p>
             </div>
 
-            {/* 3 Clean Testimonial Cards — Single-Row Mobile Slider + 3-Column Single Row on Desktop */}
+            {/* 3 Clean Testimonial Cards — Infinite Loop Mobile Slider + 3-Column Single Row on Desktop */}
             <div className="relative mt-10 sm:mt-12">
+              {/* Mobile Infinite Loop Horizontal Slider (md:hidden) */}
               <div
                 ref={reviewsSliderRef}
                 onScroll={handleReviewsScroll}
-                className="gsap-stagger-group no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0"
+                onTouchStart={() => {
+                  isTouchingReviewsRef.current = true;
+                }}
+                onTouchEnd={() => {
+                  isTouchingReviewsRef.current = false;
+                  handleReviewsScroll();
+                }}
+                className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-8 pb-2 md:hidden"
               >
-                {COUPLE_REVIEWS.map((review) => (
+                {INFINITE_MOBILE_REVIEWS.map((review) => (
                   <article
-                    key={review.id}
-                    className="review-slide-card gsap-stagger-item flex w-[84vw] max-w-[330px] shrink-0 snap-center flex-col justify-between rounded-2xl border border-[#E3D9CE] bg-white p-6 shadow-editorial transition-all duration-300 hover:-translate-y-1 md:w-auto md:max-w-none md:shrink"
+                    key={review.cloneKey}
+                    className="review-slide-card flex w-[84vw] max-w-[330px] shrink-0 snap-center flex-col justify-between rounded-2xl border border-[#E3D9CE] bg-white p-6 shadow-editorial"
                   >
                     <div>
-                      {/* 5 Champagne Gold (#D4AF7A) Stars */}
                       <div
                         className="flex items-center gap-1"
                         aria-label="Rated 5 out of 5 stars"
@@ -655,13 +741,11 @@ export default function App() {
                         ))}
                       </div>
 
-                      {/* Authentic Quote */}
                       <blockquote className="mt-4 font-serif text-lg italic leading-relaxed text-[#1A0B0D]">
                         {review.quote}
                       </blockquote>
                     </div>
 
-                    {/* Couple Name & Chosen Theme */}
                     <div className="mt-6 flex items-center justify-between border-t border-[#E3D9CE] pt-4">
                       <div>
                         <p className="font-serif text-xl font-bold text-[#1A0B0D]">
@@ -677,46 +761,71 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Mobile Slider Controls: Prev/Next Arrows & Pagination Dots */}
-              <div className="mt-5 flex items-center justify-center gap-4 md:hidden">
-                <button
-                  type="button"
-                  onClick={() => scrollToReviewSlide(activeReviewIndex - 1)}
-                  aria-label="Previous couple review"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E3D9CE] bg-white text-[#1A0B0D] shadow-sm transition-colors duration-300 hover:border-[#6E1B24] hover:bg-[#3D0C11] hover:text-[#F6F1EA]"
-                >
-                  <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
-                </button>
+              {/* Mobile Pagination Dots Only (No Left/Right Arrows) */}
+              <div
+                className="mt-4 flex items-center justify-center gap-2 md:hidden"
+                role="tablist"
+                aria-label="Couple review slides"
+              >
+                {COUPLE_REVIEWS.map((review, idx) => {
+                  const isActive = activeReviewIndex === idx;
+                  return (
+                    <button
+                      key={review.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      aria-label={`View review from ${review.couple}`}
+                      onClick={() => scrollToReviewSlide(idx)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        isActive
+                          ? 'w-6 bg-[#3D0C11]'
+                          : 'w-2 bg-[#E3D9CE] hover:bg-[#8C6A6E]'
+                      }`}
+                    />
+                  );
+                })}
+              </div>
 
-                <div className="flex items-center gap-2" role="tablist" aria-label="Couple review slides">
-                  {COUPLE_REVIEWS.map((review, idx) => {
-                    const isActive = activeReviewIndex === idx;
-                    return (
-                      <button
-                        key={review.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        aria-label={`View review from ${review.couple}`}
-                        onClick={() => scrollToReviewSlide(idx)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          isActive
-                            ? 'w-6 bg-[#3D0C11]'
-                            : 'w-2 bg-[#E3D9CE] hover:bg-[#8C6A6E]'
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
+              {/* Desktop 3-Column Single Row (hidden on mobile, grid on md+) */}
+              <div className="gsap-stagger-group hidden md:grid md:grid-cols-3 md:gap-8">
+                {COUPLE_REVIEWS.map((review) => (
+                  <article
+                    key={review.id}
+                    className="gsap-stagger-item flex flex-col justify-between rounded-2xl border border-[#E3D9CE] bg-white p-6 shadow-editorial transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div>
+                      <div
+                        className="flex items-center gap-1"
+                        aria-label="Rated 5 out of 5 stars"
+                      >
+                        {[...Array(5)].map((_, idx) => (
+                          <Star
+                            key={idx}
+                            className="h-4 w-4 fill-[#D4AF7A] text-[#D4AF7A]"
+                            strokeWidth={1.5}
+                          />
+                        ))}
+                      </div>
 
-                <button
-                  type="button"
-                  onClick={() => scrollToReviewSlide(activeReviewIndex + 1)}
-                  aria-label="Next couple review"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E3D9CE] bg-white text-[#1A0B0D] shadow-sm transition-colors duration-300 hover:border-[#6E1B24] hover:bg-[#3D0C11] hover:text-[#F6F1EA]"
-                >
-                  <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
-                </button>
+                      <blockquote className="mt-4 font-serif text-lg italic leading-relaxed text-[#1A0B0D]">
+                        {review.quote}
+                      </blockquote>
+                    </div>
+
+                    <div className="mt-6 flex items-center justify-between border-t border-[#E3D9CE] pt-4">
+                      <div>
+                        <p className="font-serif text-xl font-bold text-[#1A0B0D]">
+                          {review.couple}
+                        </p>
+                        <p className="text-xs text-[#8C6A6E]">{review.location}</p>
+                      </div>
+                      <span className="rounded-full border border-[#E3D9CE] bg-[#F6F1EA] px-3 py-1 text-[11px] font-medium text-[#6E1B24]">
+                        {review.theme}
+                      </span>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
