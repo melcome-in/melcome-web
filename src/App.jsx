@@ -417,18 +417,23 @@ export default function App() {
                   <span className="italic font-medium text-[#6E1B24]">Grand Opening.</span>
                 </h1>
 
-                {/* Subheadline (Plus Jakarta Sans) */}
-                <p className="gsap-hero-item mt-5 max-w-xl text-base leading-relaxed text-[#8C6A6E] sm:text-lg font-normal">
+                {/* Subheadline (Plus Jakarta Sans) — Hidden on Mobile View */}
+                <p className="gsap-hero-item hidden sm:block mt-5 max-w-xl text-base leading-relaxed text-[#8C6A6E] sm:text-lg font-normal">
                   Bespoke, interactive wedding invitation websites crafted for modern couples.
                   Effortless to share on WhatsApp, unforgettable to open.
                 </p>
 
+                {/* Mobile Smartphone Image — Placed Before CTA Buttons on Mobile/Tablet */}
+                <div className="gsap-hero-phone mt-6 mb-2 lg:hidden">
+                  <HeroPhoneMockup />
+                </div>
+
                 {/* CTA Pair: Browse Designs + How It Works */}
-                <div className="gsap-hero-item mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+                <div className="gsap-hero-item mt-6 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <button
                     type="button"
                     onClick={() => scrollToSection('collection')}
-                    className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#3D0C11] px-7 py-4 text-sm font-semibold text-[#F6F1EA] shadow-editorial transition-all duration-300 hover:bg-[#6E1B24] focus:outline-none focus:ring-2 focus:ring-[#3D0C11]/30"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#3D0C11] px-7 py-3.5 sm:py-4 text-sm font-semibold text-[#F6F1EA] shadow-editorial transition-all duration-300 hover:bg-[#6E1B24] focus:outline-none focus:ring-2 focus:ring-[#3D0C11]/30"
                   >
                     <span>Browse Designs</span>
                     <ArrowRight className="h-4 w-4 text-[#D4AF7A]" strokeWidth={1.5} />
@@ -437,18 +442,16 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => scrollToSection('how-it-works')}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#E3D9CE] bg-white px-7 py-4 text-sm font-semibold text-[#1A0B0D] transition-all duration-300 hover:border-[#6E1B24] hover:text-[#6E1B24] focus:outline-none focus:ring-2 focus:ring-[#E3D9CE]"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#E3D9CE] bg-white px-7 py-3.5 sm:py-4 text-sm font-semibold text-[#1A0B0D] transition-all duration-300 hover:border-[#6E1B24] hover:text-[#6E1B24] focus:outline-none focus:ring-2 focus:ring-[#E3D9CE]"
                   >
                     <span>How It Works</span>
                   </button>
                 </div>
               </div>
 
-              {/* Right Column: Sleek, Realistic Floating Smartphone Mockup (5 cols on desktop) */}
-              <div className="gsap-hero-phone lg:col-span-5">
-                <HeroPhoneMockup
-                  onOpenFullDemo={() => setPreviewDemo(INVITATION_DEMOS[1])}
-                />
+              {/* Right Column: Sleek, Realistic Floating Smartphone Mockup (Desktop 5 cols) */}
+              <div className="gsap-hero-phone hidden lg:block lg:col-span-5">
+                <HeroPhoneMockup />
               </div>
             </div>
           </div>
